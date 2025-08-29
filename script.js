@@ -388,25 +388,8 @@ function loadBackgroundImage() {
         }
     }
     
-    // Picsum Photos를 사용하여 어두운 랜덤 이미지 가져오기
-    // filter 파라미터를 사용하여 어두운 이미지 요청
-    const imageUrl = `https://picsum.photos/1600/900?random=${Date.now()}&grayscale&blur=2`;
-    
-    // 이미지 프리로드
-    const img = new Image();
-    img.onload = function() {
-        body.style.setProperty('--background-image', `url(${imageUrl})`);
-        // 로컬 스토리지에 저장
-        localStorage.setItem('backgroundImage', imageUrl);
-        localStorage.setItem('backgroundLastUpdate', now.toISOString());
-    };
-    
-    // 이미지 로딩 실패 시 대체 이미지 설정
-    img.onerror = function() {
-        console.error('배경 이미지 로딩 실패, 대체 이미지로 변경');
-        // 대체 이미지로 그라데이션만 사용
-        body.style.setProperty('--background-image', 'none');
-    };
-    
-    img.src = imageUrl;
+    // 로컬 스토리지에서 이미지를 사용하거나 로컬 이미지 사용
+    // (Picsum Photos 대신 그라데이션 배경만 사용)
+    body.style.setProperty('--background-image', 'none');
+    localStorage.setItem('backgroundLastUpdate', now.toISOString());
 }
