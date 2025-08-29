@@ -213,10 +213,10 @@ function displayTestResult() {
     // 평균 핑 시간 계산
     const avgPing = pingTimes.reduce((a, b) => a + b, 0) / pingTimes.length;
     
-    // 네트워크 품질 판단 및 표시 (선택된 코드의 기준 적용)
-    // 안정적: 평균 핑이 50ms 이하이고, 큰 변동이 없는 경우
-    // 양호: 평균 핑이 50-100ms 사이이고, 작은 변동이 있는 경우
-    // 불안정: 평균 핑이 100ms 이상이거나, 큰 변동이 있는 경우
+    // 네트워크 품질 판단 및 표시 (조정된 기준 적용)
+    // 안정적: 평균 핑이 50ms 이하이고, 표준편차가 20 이하일 경우
+    // 양호: 평균 핑이 50-300ms 사이이고, 표준편차가 50 이하일 경우
+    // 불안정: 그 외의 경우
     
     // 변동성 계산 (표준편차)
     const variance = pingTimes.reduce((a, b) => a + Math.pow(b - avgPing, 2), 0) / pingTimes.length;
@@ -225,7 +225,7 @@ function displayTestResult() {
     if (avgPing <= 50 && stdDev <= 20) {
         statusCircle.className = 'status-circle stable'; // 안정적 - 초록색
         statusText.textContent = '네트워크 안정적';
-    } else if (avgPing <= 100 && stdDev <= 50) {
+    } else if (avgPing > 50 && avgPing <= 300 && stdDev <= 50) {
         statusCircle.className = 'status-circle good'; // 양호 - 초록색
         statusText.textContent = '네트워크 양호';
     } else {
