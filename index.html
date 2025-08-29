@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Stability Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+</head>
+<body>
+    <!-- navbar 추가 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="nav-logo">NetStability</h2>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="home-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="info-link">정보</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="theme-toggle">테마 밝음</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 좌측 고정 광고 -->
+    <div style="position: fixed; left: 10px; top: 80px; width: 160px; height: 600px; z-index: 999;">
+        <ins class="kakao_ad_area" style="display: block;" 
+             data-ad-unit="DAN-"
+             data-ad-width="160"
+             data-ad-height="600"></ins>
+    </div>
+    
+    <!-- 우측 고정 광고 -->
+    <div style="position: fixed; right: 16px; top: 80px; width: 160px; height: 600px; z-index: 999;">
+        <ins class="kakao_ad_area" style="display: block;" 
+             data-ad-unit="DAN-"
+             data-ad-width="160"
+             data-ad-height="600"></ins>
+    </div>
+    
+    <!-- 홈 화면 -->
+    <div class="container" id="home-container">
+        <h1>네트워크 안정성 테스트</h1>
+        <div class="stability-test-container">
+            <div class="status-indicator">
+                <div class="status-circle" id="status-circle"></div>
+                <div class="status-text" id="status-text">준비됨</div>
+            </div>
+            
+            <div class="graph-container">
+                <canvas id="pingChart" width="700" height="300"></canvas>
+            </div>
+            
+            <div class="current-stats">
+                <div class="stat-item">
+                    <div class="stat-label">현재 핑</div>
+                    <div class="stat-value" id="current-ping">0 ms</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">평균 핑</div>
+                    <div class="stat-value" id="avg-ping">0 ms</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">최대 핑</div>
+                    <div class="stat-value" id="max-ping">0 ms</div>
+                </div>
+            </div>
+            
+            <button id="start-test-btn" class="start-button">테스트 시작</button>
+            <button id="stop-test-btn" class="stop-button" style="display: none;">테스트 중지</button>
+        </div>
+    </div>
+    
+    <!-- 정보 화면 -->
+    <div class="container" id="info-container" style="display: none;">
+        <h1>네트워크 안정성 테스트 정보</h1>
+        <div class="info-content">
+            <p>이 웹사이트는 Google.com 서버와의 핑(Ping) 시간을 측정하여 네트워크의 안정성을 확인합니다.</p>
+            
+            <h2>측정 항목 설명</h2>
+            <ul>
+                <li><strong>현재 핑</strong>: 가장 최근에 측정된 Google.com 서버와의 응답 시간</li>
+                <li><strong>평균 핑</strong>: 지금까지 측정된 핑 시간의 평균값</li>
+                <li><strong>최대 핑</strong>: 지금까지 측정된 핑 시간 중 가장 높은 값</li>
+                <li><strong>그래프</strong>: 시간에 따른 핑 시간 변화를 시각적으로 표시</li>
+            </ul>
+            
+            <h2>네트워크 안정성 판단 기준</h2>
+            <ul>
+                <li><strong>안정적</strong>: 평균 핑이 50ms 이하이고, 큰 변동이 없는 경우</li>
+                <li><strong>양호</strong>: 평균 핑이 50-100ms 사이이고, 작은 변동이 있는 경우</li>
+                <li><strong>불안정</strong>: 평균 핑이 100ms 이상이거나, 큰 변동이 있는 경우</li>
+            </ul>
+            
+            <h2>테스트 방법</h2>
+            <ul>
+                <li>테스트 시작 버튼을 누르면 Google.com 서버에 1초 간격으로 핑을 보냅니다.</li>
+                <li>20회 핑 체크 후 자동으로 테스트가 종료됩니다.</li>
+                <li>실시간으로 핑 시간과 그래프가 업데이트됩니다.</li>
+                <li>상태 표시등을 통해 현재 네트워크 상태를 직관적으로 확인할 수 있습니다.</li>
+            </ul>
+            
+            <h2>기술 정보</h2>
+            <ul>
+                <li>Google.com 서버와의 ICMP Echo Request를 통해 핑 시간을 측정합니다.</li>
+                <li>배경 이미지는 Picsum Photos에서 제공되며, 매일 오전 6시에 변경됩니다.</li>
+            </ul>
+        </div>
+        <button id="back-to-home">홈으로 돌아가기</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
