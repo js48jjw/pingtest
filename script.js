@@ -347,7 +347,7 @@ function updateStatusIndicator() {
         } else if (avgPing <= 50 && stdDev <= 20) {
             statusCircle.className = 'status-circle stable';
             statusText.textContent = '네트워크 안정적';
-        } else if (avgPing <= 100 && stdDev <= 50) {
+        } else if (avgPing > 50 && avgPing <= 300 && stdDev <= 50) {
             statusCircle.className = 'status-circle good';
             statusText.textContent = '네트워크 양호';
         } else {
