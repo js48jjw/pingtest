@@ -395,6 +395,44 @@ body.dark-theme #back-to-home:hover {
     transform: translateY(-1px);
 }
 
+/* 홍보 배너 스타일 */
+.promo-banner {
+    position: fixed;
+    width: 160px;
+    z-index: 998;
+    top: 700px; /* 카카오 광고 아래 위치 */
+}
+
+.left-banner {
+    left: 10px;
+}
+
+.right-banner {
+    right: 16px;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.banner-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* 어두운 테마 배너 */
+body.dark-theme .banner-image {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .banner-image:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 700px) {
     .container {
         padding: 1.5rem;
@@ -444,5 +482,10 @@ body.dark-theme #back-to-home:hover {
     .stop-button {
         margin-left: 0;
         margin-top: 0.5rem;
+    }
+    
+    /* 모바일에서 배너 숨김 */
+    .promo-banner {
+        display: none;
     }
 }
